@@ -15,28 +15,52 @@ static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
+int gpio[] = {13, 19, 26, 20, 16, 25};
+int bzar = 12;
 
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
 	char c;
 	int i;
+	int n = 0, w = 3;
 	if (copy_from_user(&c, buf, sizeof(char)))
 		return -EFAULT;
 
 	printk(KERN_INFO "receive %c\n", c);
 
-	if (c == '0')
-		gpio_base[10] = 1 << 25;
-	else if (c == '1')
+	if (c == 'E')
 	{
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < 3; i++)
 		{
-			gpio_base[7] = 1 << 25;
-			msleep(25);
-			gpio_base[10] = 1 << 25;
-			msleep(50);
+			if (n == i)
+			{
+				gpio_base[7] = 1 << gpio[w];
+				w++;
+			}
 		}
 	}
+	else if (c == 'B')
+	{
+		for (i = 0; i < 3; i++)
+		{
+			if (n == i)
+			{
+				gpio_base[7] = 1 << gpio[w];
+				w++;
+			}
+		}
+	}
+	else
+		for (i = 0; i < 2; i++)
+		{
+			gpio_base[7] = 1 << bzar;
+			msleep(25);
+			gpio_base[10] = 1 << bzar;
+			msleep(50);
+		}
+	msleep(1000);
+	for (i = 0; i < 6; i++)
+		gpio_base[10] = 1 << gpio[i];
 	return 1;
 }
 

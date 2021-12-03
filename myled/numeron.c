@@ -31,7 +31,7 @@ void game(char user[], char rdom[])
         {
             if (rdom[i] == user[w])
             {
-                system("echo E$y> /dev/myled0");
+                system("echo B$y> /dev/myled0");
                 y++;
             }
         }
