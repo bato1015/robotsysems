@@ -6,7 +6,7 @@
 #include <linux/io.h>
 #include <linux/delay.h>
 #include <linux/time.h>
-#include <stdlib.h>
+
 MODULE_AUTHOR("Ryuichi Ueda and Riko Bato");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
@@ -15,8 +15,8 @@ static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
-int gpio[] = {13, 19, 26, 20, 16, 25};
-int bzar = 12;
+int gpio[] = {13, 19, 26, 20, 16, 12};
+int bzar = 25;
 
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
@@ -50,7 +50,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 			}
 		}
 	}
-	else
+	else{
 		for (i = 0; i < 2; i++)
 		{
 			gpio_base[7] = 1 << bzar;
@@ -58,6 +58,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 			gpio_base[10] = 1 << bzar;
 			msleep(50);
 		}
+	}
 	msleep(1000);
 	for (i = 0; i < 6; i++)
 		gpio_base[10] = 1 << gpio[i];

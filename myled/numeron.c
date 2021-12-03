@@ -3,6 +3,7 @@
 #include <time.h>
 
 int Eranp[3], Branp[3];
+int n=0,y=0;
 void shuffle(char array[], int size)
 {
     srand((int)time(NULL));
@@ -16,7 +17,6 @@ void shuffle(char array[], int size)
 }
 void game(char user[], char rdom[])
 {
-    int n = 0, y = 0;
     for (int i = 0; i < 3; i++)
     {
         if (user[i] == rdom[i])
@@ -39,6 +39,8 @@ void game(char user[], char rdom[])
 }
 int main()
 {
+    system("sudo insmod myled1.ko");
+    system("sudo chmod 666 /dev/myled0");
     char array[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     char user[3];
     shuffle(array, 9);
@@ -48,13 +50,5 @@ int main()
     }
     scanf("%c%c%c", &user[0], &user[1], &user[2]);
     game(array, user);
-    for (int i = 0; i < 3; i++)
-    {
-        printf("B:%d", Branp[i]);
-    }
-    printf("\n");
-    for (int i = 0; i < 3; i++)
-    {
-        printf("E:%d", Eranp[i]);
-    }
+    printf("%d,%d\n",n,y);
 }
