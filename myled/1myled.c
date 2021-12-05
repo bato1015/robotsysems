@@ -50,7 +50,10 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     if (c == 'E')
         mode = 1;
     else if (c == 'B')
+    {
         mode = 2;
+        led_T(gpio[2], 1);
+    }
     else if (c == 'Q')
         mode = 3;
 
