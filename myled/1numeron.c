@@ -67,6 +67,5 @@ int main()
     else
         system("echo Q> /dev/myled0");
 
-    system("sudo rmmod 1myled");
     return 0;
 }
