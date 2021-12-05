@@ -41,7 +41,7 @@ void hantei(int mode, int count_num)
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
-    char c[2];
+    char c;
     int i;
     int mode = 0;
     int count_num = 0;
