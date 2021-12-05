@@ -47,11 +47,13 @@ void sos_bzar(int a)
 void clear(int a)
 {
     a = 0;
+    msleep(400);
+    led_T(gpio[2],1,bzar_long);
     led_T(gpio[0], 1, led_long);
     led_T(gpio[1], 1, led_long);
     msleep(led_long);
     gpio_base[7] = 1 << gpio[0];
-    gpio_base[7] = 1 << gpio[0];
+    gpio_base[7] = 1 << gpio[1];
     msleep(sos_long);
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
