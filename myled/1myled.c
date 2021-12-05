@@ -15,7 +15,7 @@ static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
-int gpio[] = {25, 19, 13};
+int gpio[] = {25, 19, 26};
 void led_T(int gpio_num, int right_count)
 {
     int i;
