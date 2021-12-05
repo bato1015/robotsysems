@@ -31,7 +31,7 @@ void game(char user[], char rdom[])
         }
     }
 }
-void set()
+void set(int var)
 {
     if (n == 1)
         system("echo 1> /dev/myled0");
@@ -54,13 +54,19 @@ int main()
     scanf("%c%c%c", &user[0], &user[1], &user[2]);
     game(array, user);
     printf("%d,%d\n", n, y);
-    if (n == 0)
+    if (n != 0)
+    {
         system("echo E> /dev/myled0");
-    else if (y == 0)
+        set(n);
+    }
+    else if (y != 0)
+    {
         system("echo B> /dev/myled0");
+        set(y);
+    }
     else
         system("echo Q> /dev/myled0");
-    set();
+
     system("sudo rmmod 1myled");
     return 0;
 }
