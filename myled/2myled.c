@@ -56,7 +56,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
         mode = 2;
     else if (c == 'Q')
         mode = 3;
-    if (c == 'a' || c == 'A')
+    else if (c == 'a' || c == 'A')
         count_num = 1;
     else if (c == 'b' || c == 'B')
         count_num = 2;
