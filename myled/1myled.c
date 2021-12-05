@@ -45,7 +45,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     int i;
     int mode = 0;
     int count_num = 0;
-    if (copy_from_user(&s, buf, sizeof(char)))
+    if (copy_from_user(&c, buf, sizeof(char)))
         return -EFAULT;
 
     printk(KERN_INFO "receive %s\n", c);
