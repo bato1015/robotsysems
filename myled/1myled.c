@@ -41,8 +41,8 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 {
     char c;
     int i;
-    int n = 0;
-    int mode = 0, count = 0;
+    int mode = 0;
+    int count = 0;
     if (copy_from_user(&c, buf, sizeof(char)))
         return -EFAULT;
 
@@ -85,7 +85,7 @@ static struct file_operations led_fops = {
     .owner = THIS_MODULE,
     .write = led_write,
     .read = sushi_read};
-static int __init init_mod(void) //カーネルモジュールの初期化
+static int __init init_mod(void)
 {
     int retval;
     int i;
@@ -118,16 +118,17 @@ static int __init init_mod(void) //カーネルモジュールの初期化
         const u32 shift = (led % 10) * 3; //15bit
         const u32 mask = ~(0x7 << shift);
         gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
-        return 0;
     }
-    static void __exit cleanup_mod(void)
-    {
-        cdev_del(&cdv);
-        device_destroy(cls, dev);
-        class_destroy(cls);
-        unregister_chrdev_region(dev, 1);
-        printk(KERN_INFO "%s is unloaded. major:%d\n", __FILE__, MAJOR(dev));
-    }
+    return 0;
+}
+static void __exit cleanup_mod(void)
+{
+    cdev_del(&cdv);
+    device_destroy(cls, dev);
+    class_destroy(cls);
+    unregister_chrdev_region(dev, 1);
+    printk(KERN_INFO "%s is unloaded. major:%d\n", __FILE__, MAJOR(dev));
+}
 
-    module_init(init_mod);    //マクロで関数を登録
-    module_exit(cleanup_mod); //同上
+module_init(init_mod);    //マクロで関数を登録
+module_exit(cleanup_mod); //同上
