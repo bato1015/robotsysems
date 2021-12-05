@@ -16,13 +16,14 @@ static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
 int gpio[] = {26, 19, 25};
-void led_T(int gpio_num, int right_count)
+int led_long = 150, bzar_long = 100, sos_long = 200;
+void led_T(int gpio_num, int right_count, int long)
 {
     int i;
     for (i = 0; i < right_count; i++)
     {
         gpio_base[7] = 1 << gpio_num;
-        msleep(150);
+        msleep(long);
         gpio_base[10] = 1 << gpio_num;
         msleep(100);
     }
@@ -30,11 +31,21 @@ void led_T(int gpio_num, int right_count)
 void hantei(int mode, int count_num)
 {
     if (mode == 1)
-        led_T(gpio[0], count_num);
+        led_T(gpio[0], count_num, led_long);
     else if (mode == 2)
-        led_T(gpio[1], count_num);
+        led_T(gpio[1], count_num, led_long);
     else if (mode == 3)
-        led_T(gpio[2], 2);
+        led_T(gpio[2], 2, bzar_long);
+}
+void sos()
+{
+    int i;
+    for (i = 0; i < 3; i++)
+        led_T(gpio[2], 1, bzar_long);
+    for (i = 0; i < 3; i++)
+        led_T(gpio[2], 1, sos_long);
+    for (i = 0; i < 3; i++)
+        led_T(gpio[2], 1, bzar_long);
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
@@ -59,7 +70,8 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
         count_num = 2;
     else if (c == 'c' || c == 'C')
         count_num = 3;
-
+    if (c == "s")
+        sos();
     hantei(mode, count_num);
     for (i = 0; i < 3; i++)
         gpio_base[10] = 1 << gpio[i];

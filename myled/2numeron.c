@@ -69,6 +69,7 @@ int main()
         scanf("%c%c%c", &user[0], &user[1], &user[2]);
         if (user[0] == 'g' || user[1] == 'i' || user[2] == 'v')
         {
+            system("echo s> /dev/myled0");
             printf("answer==");
             for (int i = 0; i < 3; i++)
                 printf("%c", array[i]);
