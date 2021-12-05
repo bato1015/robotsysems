@@ -33,11 +33,11 @@ void game(char user[], char rdom[])
 }
 void set(int var)
 {
-    if (n == 1)
+    if (var == 1)
         system("echo 1> /dev/myled0");
-    else if (n == 2)
+    else if (var == 2)
         system("echo 2> /dev/myled0");
-    else if (n == 3)
+    else if (var == 3)
         system("echo 3> /dev/myled0");
 }
 int main()
