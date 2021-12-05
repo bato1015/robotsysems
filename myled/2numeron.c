@@ -51,6 +51,7 @@ void set()
 }
 int main()
 {
+    char space;
     system("sudo insmod 2myled.ko");
     system("sudo chmod 666 /dev/myled0");
     char array[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -77,6 +78,7 @@ int main()
         game(array, user);
         printf("%d,%d\n", E, B);
         set();
+        scanf("%c", &space);
     }
     return 0;
 }
