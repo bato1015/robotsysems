@@ -53,11 +53,11 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
         mode = 2;
     else if (c == 'Q')
         mode = 3;
-    else if (c == '1')
+    else if (c == 'o')
         count_num = 1;
-    else if (c == '2')
+    else if (c == 't')
         count_num = 2;
-    else if (c == '3')
+    else if (c == 'h')
     {
         count_num = 3;
         led_T(gpio[2], 1);
