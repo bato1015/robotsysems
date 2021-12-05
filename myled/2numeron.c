@@ -63,15 +63,19 @@ int main()
     printf("\n");
     while (1)
     {
+        B = 0;
+        E = 0;
         scanf("%c%c%c", &user[0], &user[1], &user[2]);
         game(array, user);
         printf("%d,%d\n", E, B);
         set();
         if (user[0] == 'q' || user[1] == 'q' || user[2] == 'q')
         {
+            printf("answer==");
             for (int i = 0; i < 3; i++)
-                printf("answer==%c", array[i]);
+                printf("%c", array[i]);
             printf("\n");
+            break;
         }
     }
     return 0;
