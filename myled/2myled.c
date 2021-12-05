@@ -22,7 +22,7 @@ void led_T(int gpio_num, int right_count)
     for (i = 0; i < right_count; i++)
     {
         gpio_base[7] = 1 << gpio_num;
-        msleep(25);
+        msleep(50);
         gpio_base[10] = 1 << gpio_num;
         msleep(100);
     }
@@ -36,7 +36,7 @@ void hantei(int mode, int count_num)
     else if (mode == 3)
     {
         int n = 2;
-        led_T(gpio[2], n);
+        //led_T(gpio[2], n);
     }
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
