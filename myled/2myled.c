@@ -22,7 +22,7 @@ void led_T(int gpio_num, int right_count)
     for (i = 0; i < right_count; i++)
     {
         gpio_base[7] = 1 << gpio_num;
-        msleep(50);
+        msleep(100);
         gpio_base[10] = 1 << gpio_num;
         msleep(100);
     }
