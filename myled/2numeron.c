@@ -58,9 +58,9 @@ int main()
     char user[3];
     shuffle(array, 9);
     //答え
-    for (int i = 0; i < 3; i++)
+    /*for (int i = 0; i < 3; i++)
         printf("%c", array[i]);
-    printf("\n");
+    printf("\n");*/
     while (1)
     {
         B = 0;
@@ -75,6 +75,8 @@ int main()
             printf("\n");
             break;
         }
+        else if (user[0] == 'h' || user[1] == 'l' || user[2] == 'p')
+            printf("%c**\n", array[0]);
         game(array, user);
         printf("%d,%d\n", E, B);
         set();
