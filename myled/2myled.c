@@ -17,13 +17,13 @@ static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
 int gpio[] = {26, 19, 25};
 int led_long = 150, bzar_long = 100, sos_long = 200;
-void led_T(int gpio_num, int right_count, int long)
+void led_T(int gpio_num, int right_count, int long_time)
 {
     int i;
     for (i = 0; i < right_count; i++)
     {
         gpio_base[7] = 1 << gpio_num;
-        msleep(long);
+        msleep(long_time);
         gpio_base[10] = 1 << gpio_num;
         msleep(100);
     }
@@ -39,7 +39,6 @@ void hantei(int mode, int count_num)
 }
 void sos()
 {
-    int i;
     led_T(gpio[2], 3, bzar_long);
     led_T(gpio[2], 3, sos_long);
     led_T(gpio[2], 3, bzar_long);
@@ -68,7 +67,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     else if (c == 'c' || c == 'C')
         count_num = 3;
 
-    if (c == "s")
+    if (c == 's')
         sos();
     hantei(mode, count_num);
     for (i = 0; i < 3; i++)
