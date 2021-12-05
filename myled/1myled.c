@@ -61,7 +61,11 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     else if (c == 'b')
         count_num = 2;
     else if (c == 'c')
+    {
         count_num = 3;
+        led_T(gpio[1], 3);
+    }
+
     hantei(mode, count_num);
     msleep(100);
     for (i = 0; i < 3; i++)
