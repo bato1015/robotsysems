@@ -42,7 +42,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     char c;
     int i;
     int mode = 0;
-    int count = 0;
+    int count_num = 0;
     if (copy_from_user(&c, buf, sizeof(char)))
         return -EFAULT;
 
@@ -56,13 +56,13 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
         mode = 3;
 
     if (c == '1')
-        count = 1;
+        count_num = 1;
     else if (c == '2')
-        count = 2;
+        count_num = 2;
     else if (c == '3')
-        count = 3;
+        count_num = 3;
 
-    hantei(mode, count);
+    hantei(mode, count_num);
     msleep(100);
     for (i = 0; i < 3; i++)
         gpio_base[10] = 1 << gpio[i];
