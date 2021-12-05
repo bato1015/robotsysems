@@ -27,15 +27,7 @@ void led_T(int gpio_num, int right_count)
         msleep(50);
     }
 }
-void hantei(int mode, int count_num)
-{
-    if (mode == 1)
-        led_T(gpio[0], count_num);
-    else if (mode == 2)
-        led_T(gpio[1], count_num);
-    else if (mode == 3)
-        led_T(gpio[2], 2);
-}
+
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
     char c;
@@ -60,11 +52,13 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     else if (c == 'c')
         count_num = 3;
 
-    if (count_num == 3)
-    {
+    if (mode == 1)
+        led_T(gpio[0], count_num);
+    else if (mode == 2)
+        led_T(gpio[1], count_num);
+    else if (mode == 3)
         led_T(gpio[2], 2);
-    }
-    hantei(mode, count_num);
+
     msleep(100);
     for (i = 0; i < 3; i++)
         gpio_base[10] = 1 << gpio[i];
