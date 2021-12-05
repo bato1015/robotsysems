@@ -61,11 +61,17 @@ int main()
     {
         system("echo E> /dev/myled0");
         if (n == 1)
+        {
             system("echo 1> /dev/myled0");
+            printf("var%d\n", n);
+        }
         else if (n == 2)
             system("echo 2> /dev/myled0");
         else if (n == 3)
+        {
             system("echo 3> /dev/myled0");
+            printf("var%d\n", n);
+        }
     }
     if (y != 0)
     {
@@ -75,7 +81,10 @@ int main()
         else if (y == 2)
             system("echo 2> /dev/myled0");
         else if (y == 3)
+        {
             system("echo 3> /dev/myled0");
+            printf("y%d\n", n);
+        }
     }
     else
         system("echo Q> /dev/myled0");
