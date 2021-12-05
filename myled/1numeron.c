@@ -60,4 +60,7 @@ int main()
         system("echo B> /dev/myled0");
     else
         system("echo Q> /dev/myled0");
+    set();
+    system("sudo rmmod 1myled");
+    return 0;
 }
