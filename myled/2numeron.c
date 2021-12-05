@@ -60,10 +60,19 @@ int main()
     {
         printf("%c", array[i]);
     }
-    scanf("%c%c%c", &user[0], &user[1], &user[2]);
-    game(array, user);
-    printf("%d,%d\n", E, B);
-    set();
-
+    printf("\n");
+    while (1)
+    {
+        scanf("%c%c%c", &user[0], &user[1], &user[2]);
+        game(array, user);
+        printf("%d,%d\n", E, B);
+        set();
+        if (user[0] == 'q' || user[1] == 'q' || user[2] == 'q')
+        {
+            for (int i = 0; i < 3; i++)
+                printf("answer==%c", array[i]);
+            printf("\n");
+        }
+    }
     return 0;
 }
