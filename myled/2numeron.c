@@ -43,7 +43,6 @@ void set()
     else if (E == 3)
     {
         system("echo C> /dev/myled0");
-        printf("eat\n");
     }
 
     if (B == 1)
@@ -53,7 +52,6 @@ void set()
     else if (B == 3)
     {
         system("echo c> /dev/myled0");
-        printf("bit\n");
     }
 }
 int main()
