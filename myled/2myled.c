@@ -48,7 +48,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     if (copy_from_user(&c, buf, sizeof(char)))
         return -EFAULT;
 
-    printk(KERN_INFO "receive %s\n", c);
+    printk(KERN_INFO "receive %c\n", c);
 
     if (c == 'a' || c == 'b' || c == 'c')
         mode = 1;
@@ -77,7 +77,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
         led_T(gpio[2], n);
     }
     */
-    msleep(100);
+    msleep(50);
     for (i = 0; i < 3; i++)
         gpio_base[10] = 1 << gpio[i];
     return 1;
