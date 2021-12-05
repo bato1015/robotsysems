@@ -31,6 +31,15 @@ void game(char user[], char rdom[])
         }
     }
 }
+void set()
+{
+    if (n == 1)
+        system("echo 1> /dev/myled0");
+    else if (n == 2)
+        system("echo 2> /dev/myled0");
+    else if (n == 3)
+        system("echo 3> /dev/myled0");
+}
 int main()
 {
     system("sudo insmod myled1.ko");
@@ -46,15 +55,9 @@ int main()
     game(array, user);
     printf("%d,%d\n", n, y);
     if (n == 0)
-    {
         system("echo E> /dev/myled0");
-        system("echo $n> /dev/myled0");
-    }
     else if (y == 0)
-    {
         system("echo B> /dev/myled0");
-        system("echo $y> /dev/myled0");
-    }
     else
-        system("echo Q0> /dev/myled0");
+        system("echo Q> /dev/myled0");
 }

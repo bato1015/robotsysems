@@ -31,7 +31,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 {
     char c;
     int i;
-    int n = 0, w = 3;
+    int n = 0;
     if (copy_from_user(&c, buf, sizeof(char)))
         return -EFAULT;
     if (copy_from_user(&n, buf, sizeof(int)))
