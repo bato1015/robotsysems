@@ -16,7 +16,7 @@ static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL; //アドレスをマッピングするための配列をグローバルで定義している
 int gpio[] = {26, 19, 25};
-int led_long = 150, bzar_long = 100, sos_long = 200;
+int led_long = 150, bzar_long = 100, sos_long = 300;
 void led_T(int gpio_num, int right_count, int long_time)
 {
     int i;
@@ -43,6 +43,18 @@ void sos_bzar(int a)
     led_T(gpio[2], 3, bzar_long);
     led_T(gpio[2], 3, sos_long);
     led_T(gpio[2], 3, bzar_long);
+}
+void clear(int a)
+{
+    a = 0;
+    led_T(gpio[0], 1, led_long);
+    led_T(gpio[1], 1, led_long);
+    msleep(led_long);
+    gpio_base[7] = 1 << gpio[1];
+    gpio_base[7] = 1 << gpio[2];
+    msleep(100);
+    led_T(gpio[0], 1, led_long);
+    led_T(gpio[1], 1, led_long);
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {

@@ -57,10 +57,9 @@ int main()
     char array[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     char user[3];
     shuffle(array, 9);
+    //答え
     for (int i = 0; i < 3; i++)
-    {
         printf("%c", array[i]);
-    }
     printf("\n");
     while (1)
     {
@@ -79,6 +78,11 @@ int main()
         game(array, user);
         printf("%d,%d\n", E, B);
         set();
+        if (E == 3)
+        {
+            system("echo g> /dev/myled0");
+            printf("gg\n");
+        }
         scanf("%c", &space);
     }
     return 0;
