@@ -82,6 +82,7 @@ int main()
         {
             system("echo g> /dev/myled0");
             printf("gg\n");
+            break;
         }
         scanf("%c", &space);
     }

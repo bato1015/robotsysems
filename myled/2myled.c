@@ -82,6 +82,8 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 
     if (c == 's')
         sos_bzar(2);
+    if (c == 'g')
+        clear(2);
     hantei(mode, count_num);
     for (i = 0; i < 3; i++)
         gpio_base[10] = 1 << gpio[i];
