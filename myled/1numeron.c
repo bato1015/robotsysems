@@ -42,7 +42,7 @@ void set(int var)
 }
 int main()
 {
-    system("sudo insmod myled1.ko");
+    system("sudo insmod 1myled.ko");
     system("sudo chmod 666 /dev/myled0");
     char array[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     char user[3];
