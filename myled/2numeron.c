@@ -33,7 +33,7 @@ void game(char user[], char rdom[])
 }
 void set()
 {
-    if (E == 0 || B == 0)
+    if (E == 0 && B == 0)
         system("echo Q> /dev/myled0");
     if (E == 1)
         system("echo A> /dev/myled0");
