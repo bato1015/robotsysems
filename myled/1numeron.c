@@ -46,9 +46,15 @@ int main()
     game(array, user);
     printf("%d,%d\n", n, y);
     if (n == 0)
-        system("echo E$n> /dev/myled0");
+    {
+        system("echo E> /dev/myled0");
+        system("echo $n> /dev/myled0");
+    }
     else if (y == 0)
-        system("echo B$y> /dev/myled0");
+    {
+        system("echo B> /dev/myled0");
+        system("echo $y> /dev/myled0");
+    }
     else
         system("echo Q0> /dev/myled0");
 }
