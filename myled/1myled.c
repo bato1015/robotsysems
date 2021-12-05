@@ -50,22 +50,22 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     if (c == 'E')
     {
         mode = 1;
-        led_T(gpio[2], 1);
     }
     else if (c == 'B')
     {
         mode = 2;
-        led_T(gpio[2], 1);
     }
     else if (c == 'Q')
         mode = 3;
-
-    if (c == '1')
+    else if (c == '1')
         count_num = 1;
     else if (c == '2')
         count_num = 2;
     else if (c == '3')
+    {
         count_num = 3;
+        led_T(gpio[2], 1);
+    }
 
     hantei(mode, count_num);
     msleep(100);
