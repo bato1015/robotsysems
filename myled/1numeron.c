@@ -38,7 +38,10 @@ void set(int var)
     else if (var == 2)
         system("echo 2> /dev/myled0");
     else if (var == 3)
+    {
         system("echo 3> /dev/myled0");
+        printf("var%d\n", var);
+    }
 }
 int main()
 {
