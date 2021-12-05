@@ -66,7 +66,7 @@ int main()
     {
         B = 0;
         E = 0;
-        scanf("%c%c%c\n", &user[0], &user[1], &user[2]);
+        scanf("%c%c%c", &user[0], &user[1], &user[2]);
         if (user[0] == 'g' || user[1] == 'i' || user[2] == 'v')
         {
             printf("answer==");
