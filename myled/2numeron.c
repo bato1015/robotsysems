@@ -41,14 +41,20 @@ void set()
     else if (E == 2)
         system("echo B> /dev/myled0");
     else if (E == 3)
+    {
         system("echo C> /dev/myled0");
+        printf("eat\n");
+    }
 
     if (B == 1)
         system("echo a> /dev/myled0");
     else if (B == 2)
         system("echo b> /dev/myled0");
     else if (B == 3)
+    {
         system("echo c> /dev/myled0");
+        printf("bit\n");
+    }
 }
 int main()
 {
