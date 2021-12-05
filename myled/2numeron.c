@@ -68,7 +68,6 @@ int main()
         scanf("%c%c%c", &user[0], &user[1], &user[2]);
         game(array, user);
         printf("%d,%d\n", E, B);
-        set();
         if (user[0] == 'q' || user[1] == 'q' || user[2] == 'q')
         {
             printf("answer==");
@@ -77,6 +76,7 @@ int main()
             printf("\n");
             break;
         }
+        set();
     }
     return 0;
 }
