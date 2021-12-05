@@ -64,5 +64,6 @@ int main()
     game(array, user);
     printf("%d,%d\n", E, B);
     set();
+
     return 0;
 }
