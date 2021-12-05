@@ -80,5 +80,7 @@ int main()
     else
         system("echo Q> /dev/myled0");
 
+    system("echo Ba> /dev/myled0");
+
     return 0;
 }

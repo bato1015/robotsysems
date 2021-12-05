@@ -41,7 +41,7 @@ void hantei(int mode, int count_num)
 }
 static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_t *pos)
 {
-    char c;
+    char c[2];
     int i;
     int mode = 0;
     int count_num = 0;
@@ -52,11 +52,11 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
 
     if (c == 'E')
         mode = 1;
-    else if (c == 'B')
+    else if (c[0] == 'B')
         mode = 2;
     else if (c == 'Q')
         mode = 3;
-    else if (c == 'a')
+    if (c[1] == 'a')
         count_num = 1;
     else if (c == 'b')
         count_num = 2;
@@ -67,7 +67,7 @@ static ssize_t led_write(struct file *filp, const char *buf, size_t count, loff_
     }
 
     //hantei(mode, count_num);
-    if (mode == 0)
+    if (mode == 1)
         led_T(gpio[0], count_num);
     else if (mode == 2)
         led_T(gpio[1], count_num);
