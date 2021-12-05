@@ -103,7 +103,7 @@ static int __init init_mod(void) //カーネルモジュールの初期化
         gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
         return 0;
     }
-    static void __exit cleanup_mod(void) //
+    static void __exit cleanup_mod(void)
     {
         cdev_del(&cdv);
         device_destroy(cls, dev);
