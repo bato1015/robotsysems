@@ -35,24 +35,19 @@ void set()
 {
     if (E == 0 || B == 0)
         system("echo Q> /dev/myled0");
-
     if (E == 1)
         system("echo A> /dev/myled0");
     else if (E == 2)
         system("echo B> /dev/myled0");
     else if (E == 3)
-    {
         system("echo C> /dev/myled0");
-    }
 
     if (B == 1)
         system("echo a> /dev/myled0");
     else if (B == 2)
         system("echo b> /dev/myled0");
     else if (B == 3)
-    {
         system("echo c> /dev/myled0");
-    }
 }
 int main()
 {
